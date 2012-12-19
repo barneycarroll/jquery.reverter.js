@@ -1,7 +1,7 @@
 jquery.reverter.js
 ==================
 
-Keeps an element's attributes versioned to save or reset dynamic manipulations (eg data-*, style). Useful for UIs that don't have a comprehensive view-model binding (like Backbone auto-update) but need to
+Keeps an element's attributes versioned to save or reset dynamic manipulations (eg data-*, style). Useful for UIs that don't have a comprehensive view-model binding (like Backbone auto-update) but want to offer some loose state control to the DOM.
 
 ## Versioning for the DOM
 
@@ -9,7 +9,7 @@ What with the rise of ['MVC'](http://addyosmani.com/blog/digesting-javascript-mv
 
 Sometimes, you'll still want to do dynamic modifications to an element on the fly with no reference to an internal state, but want to be able to save those states, and revert them later on.
 
-This is what most versioning software does — it doesn't pretend to understand how or why you're doing what you're doing, but it knows what files have changed and it can track that. This is what this does.
+This is what most versioning software does — it doesn't pretend to understand how or why you're doing what you're doing, but it knows what files have changed and it can track that. This is what this does. To your web page.
 
 ## How?
 
@@ -17,21 +17,21 @@ This is what most versioning software does — it doesn't pretend to understand 
 
 ##### `$(…).commit()`
 
-Saves all the attributes for the given selection.
+Creates a new changeset storing all attributes and values for each element in the selection.
 
 ##### `$(…).revert()`
 
-Reverts the selection to the last saved commit.
+Reverts each versioned element in the selection to their last changeset.
 
-Both take an option single object parameter which takes any of the following properties:
+Both take an optional parameter which takes the form of an object with any number of the following properties:
 
 ##### `unchain`
 
-Boolean, defaulting to false. Returns current changeset index (as opposed to the selection jQuery wrapper).
+Boolean, defaulting to false, which returns the jQuery object as per standard jQuery API. Truthy returns the current changeset's index instead — useful for advanced statefulness.
 
 ##### `attributes`
 
-String or RegExp, defaulting to `/.+/` (global wildcard). Only attributes matching the value will be commited or reverted.
+String or RegExp, defaulting to `/.+/` (global wildcard). Only attributes matching the value will be commited or reverted. 
 
 ##### `changeset`
 
@@ -45,9 +45,9 @@ A few examples:
 
 An interface with attributes that can take various freeform style modifications from the user, for instance a DOM-drawing tool. Allow the user to save their modifications by taking snapshots of the `style` attribute and undo (undo the undo, why not!) at will.
 
-### Loose data-* statefulness
+### Loose form statefulness
 
-You're running an HTML5 application with data-attributes that isn't tightly bound to back-end data, for instance a form with advanced widgets like color-pickers etc. There's a one-on-one relationship between certain data points and their representation as elements but the data model is defined back-end, has no granular REST service, and doesn't warrant applying a strict front-end controller. Put in just as much statefulness without a strict model, and collect the data on submit.
+A web page representing an interactive data-set that isn't tightly bound to back-end data, for instance a long form (possibly with advanced widgets via `data-*` attributes?). There's a 1:1 relationship between certain data points and their representation as elements but there's no granular REST service, and the app doesn't warrant applying a strict front-end controller. Put in just as much statefulness as necessary without writing an MVC interface, and collect the data on submit.
 
 ### Web development
 
