@@ -3,7 +3,7 @@ jquery.reverter.js
 
 Keeps an element's attributes versioned to save or reset dynamic manipulations (eg data-*, style). Useful for UIs that don't have a comprehensive view-model binding (like Backbone auto-update) but want to offer some loose state control to the DOM.
 
-## Versioning for the DOM
+## Version control for the DOM
 
 What with the rise of ['MVC'](http://addyosmani.com/blog/digesting-javascript-mvc-pattern-abuse-or-evolution/) frameworks like [Angular](angularjs.org), a lot of dynamically modified web pages will often be (somewhat ironically) tightly coupled to an underlying model, such that no modification to the DOM is possible without a corresponding internal state being modified. But there are situations where this is undesirable — the interface might be so free-floating that no dataset could or should seek to describe it comprehensively.
 
